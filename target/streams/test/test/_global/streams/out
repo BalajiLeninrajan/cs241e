@@ -1,0 +1,35 @@
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(A4TestsT1, org.scalatest.tools.Framework$$anon$1@232b8e3d, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(A1Tests, org.scalatest.tools.Framework$$anon$1@232b8e3d, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(A5TestsL2, org.scalatest.tools.Framework$$anon$1@232b8e3d, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mA1Tests:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- decodeUnsigned[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mA5TestsL2:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- printprocedure[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m- printArray *** FAILED ***[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  java.lang.AssertionError: assertion failed[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.runtime.Scala3RunTime$.assertFailed(Scala3RunTime.scala:11)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at cs241e.assignments.Transformations$.compileProcedure$1(Transformations.scala:467)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at cs241e.assignments.Transformations$.$anonfun$2(Transformations.scala:610)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.immutable.List.map(List.scala:250)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.collection.immutable.List.map(List.scala:79)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at cs241e.assignments.Transformations$.compilerA5(Transformations.scala:610)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at A5TestsL2.testFun$proxy2$1(A5Tests.scala:48)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at A5TestsL2.$init$$$anonfun$2(A5Tests.scala:34)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.Transformer.apply$$anonfun$1(Transformer.scala:22)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  at org.scalatest.OutcomeOf.outcomeOf(OutcomeOf.scala:85)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Tree[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mA4TestsT1:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- max arr[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- print int[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 573 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 6[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 3, aborted 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 5, failed 1, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[31m*** 1 TEST FAILED ***[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	A1Tests[0m
+[0m[[0m[0mdebug[0m] [0m[0m	A4TestsT1[0m
+[0m[[0m[31merror[0m] [0m[0mFailed tests:[0m
+[0m[[0m[31merror[0m] [0m[0m	A5TestsL2[0m
+[0m[[0m[31merror[0m] [0m[0m(Test / [31mtest[0m) sbt.TestsFailedException: Tests unsuccessful[0m

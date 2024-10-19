@@ -1,0 +1,4 @@
+[debug] [cs241e-test] Classpath dependencies List()
+[debug] [cs241e-test] Dependencies from configurations List(cs241e)
+[debug] Bloop wrote the configuration of project 'cs241e-test' to '/home/balaji/Documents/code/cs241e/cs241e/.bloop/cs241e-test.json'
+[success] Generated .bloop/cs241e-test.json

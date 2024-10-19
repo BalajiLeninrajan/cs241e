@@ -1,0 +1,71 @@
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/regular241.scala:24:20 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m24 |[0m      encodeUnsigned([31m8[0m),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Found:    Seq[Boolean][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Required: cs241e.assignments.ProgramRepresentation.Code[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/regular241.scala:37:20 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m37 |[0m      encodeUnsigned([31m8[0m),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Found:    Seq[Boolean][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Required: cs241e.assignments.ProgramRepresentation.Code[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/regular241.scala:43:18 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m43 |[0m      encodeSigned(-[31m1[0m),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Found:    Seq[Boolean][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Required: cs241e.assignments.ProgramRepresentation.Code[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/regular241.scala:52:20 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m52 |[0m      encodeUnsigned([31m4[0m),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Found:    Seq[Boolean][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Required: cs241e.assignments.ProgramRepresentation.Code[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/regular241.scala:57:18 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m57 |[0m      encodeSigned(-[31m1[0m),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Found:    Seq[Boolean][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Required: cs241e.assignments.ProgramRepresentation.Code[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/regular241.scala:66:20 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m66 |[0m      encodeUnsigned([31m4[0m),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Found:    Seq[Boolean][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Required: cs241e.assignments.ProgramRepresentation.Code[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/regular241.scala:72:20 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m72 |[0m      encodeUnsigned([31m8[0m),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Found:    Seq[Boolean][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Required: cs241e.assignments.ProgramRepresentation.Code[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/regular241.scala:78:18 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m78 |[0m      encodeSigned([31m1[0m),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Found:    Seq[Boolean][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Required: cs241e.assignments.ProgramRepresentation.Code[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/regular241.scala:83:18 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m83 |[0m      encodeSigned([31m0[0m),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Found:    Seq[Boolean][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Required: cs241e.assignments.ProgramRepresentation.Code[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/regular241.scala:87:20 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m87 |[0m      encodeUnsigned([31m8[0m),[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m      ^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Found:    Seq[Boolean][0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      Required: cs241e.assignments.ProgramRepresentation.Code[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m10 errors found[0m
