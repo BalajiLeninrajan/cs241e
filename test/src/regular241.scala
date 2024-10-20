@@ -91,9 +91,13 @@ class regular241 extends AnyFunSuite {
     )
 
     val machineCode = compilerA4(myCode);
+    println()
     val finalState =
-      A4.loadAndRun(machineCode, Word(encodeSigned(5)), Word(encodeSigned(1)))
-    println(finalState)
+      A4.loadAndRun(
+        machineCode,
+        Word(encodeSigned(5)),
+        Word(encodeSigned(1))
+      )
   }
   test("add overflow") {
     val code = block(

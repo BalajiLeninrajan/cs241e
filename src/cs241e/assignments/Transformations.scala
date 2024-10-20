@@ -24,7 +24,9 @@ import Debugger.*
 import scala.collection.mutable
 import scala.runtime.stdLibPatches.language.`3.1`
 import scala.annotation.meta.param
-import cs241e.assignments.A4.{const, getReg, printReg, getVar}
+import mipsHelpers.*
+import cs241e.assignments.Reg.result
+import cs241e.assignments.Reg.scratch
 
 /** Implementations of various transformations on the `Code` objects defined in
   * `ProgramRepresentation.scala`. In general, the transformations successively
@@ -431,11 +433,6 @@ object Transformations {
             tempVars,
             block(
               Block(
-                (0 until tempVars.size).map(index =>
-                  assign(tempVars(index), call.arguments(index))
-                )
-              ),
-              Block(
                 tempVars
                   .zip(call.arguments)
                   .map((variable, code) => assign(variable, code))
@@ -663,7 +660,9 @@ object Transformations {
       *   - recursively, every enclosing procedure that contains an inner
       *     procedure nested within it whose frame is allocated on the heap
       */
-    val frameOnHeap: Set[Procedure] = Set()
+    val frameOnHeap: Set[Procedure] = procedures.foldLeft(Set[Procedure]()) {
+      (current, procedure) => current + procedure
+    }
 
     /** The first phase of compilation: performs the transformations up to
       * eliminateScopes so that the full set of variables of the procedure is
@@ -719,11 +718,6 @@ object Transformations {
               tempVars,
               block(
                 Block(
-                  (0 until tempVars.size).map(index =>
-                    assign(tempVars(index), call.arguments(index))
-                  )
-                ),
-                Block(
                   tempVars
                     .zip(call.arguments)
                     .map((variable, code) => assign(variable, code))
@@ -740,6 +734,12 @@ object Transformations {
                       )
                     )
                 ),
+                stackPush(result),
+                computeStaticLink(callee),
+                stackTop(scratch),
+                paramChunk
+                  .store(Reg.scratch, callee.staticLink, Reg.result),
+                stackPop(),
                 LIS(Reg.targetPC),
                 Use(callee.label),
                 JALR(Reg.targetPC)
@@ -781,7 +781,14 @@ object Transformations {
       val (code5, variables) = eliminateScopes(code4)
       assert(variables.distinct == variables)
 
-      val frame = Chunk(???)
+      val frame = Chunk(
+        variables ++
+          Seq(
+            currentProcedure.savedPC,
+            currentProcedure.dynamicLink,
+            currentProcedure.paramPtr
+          )
+      )
 
       (code5, frame)
     }
@@ -822,7 +829,33 @@ object Transformations {
         * been called. Therefore, this method should not introduce any new
         * `VarAccess`es into the code (by calling `read` or `write`).
         */
-      def addEntryExit(code: Code): Code = ???
+      def addEntryExit(code: Code): Code = {
+        val enter = block(
+          ADD(Reg.savedParamPtr, Reg.zero, Reg.result),
+          Stack.allocate(frame),
+          frame
+            .store(Reg.result, currentProcedure.dynamicLink, Reg.framePointer),
+          ADD(Reg.framePointer, Reg.result, Reg.zero),
+          frame.store(Reg.result, currentProcedure.savedPC, Reg.link),
+          frame.store(Reg.result, currentProcedure.paramPtr, Reg.savedParamPtr)
+        )
+        val exit = block(
+          frame.load(
+            Reg.framePointer,
+            Reg.link,
+            currentProcedure.savedPC
+          ),
+          frame.load(
+            Reg.framePointer,
+            Reg.framePointer,
+            currentProcedure.dynamicLink
+          ),
+          Stack.pop,
+          Stack.pop,
+          JR(Reg.link)
+        )
+        block(Define(currentProcedure.label), enter, code, exit)
+      }
 
       /** Eliminate all `VarAccess`es from a tree of `Code` by replacing them
         * with machine language code for reading or writing the relevant
