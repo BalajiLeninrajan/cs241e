@@ -255,7 +255,10 @@ object MemoryManagement {
       * `ProgramRepresentation.scala`.
       */
     def allocate(chunk: Chunk): Code = block(
-      ???,
+      Assembler.ADD(Reg.result, Reg.heapPointer, Reg.zero),
+      Assembler.LIS(Reg.scratch),
+      Word(encodeUnsigned(chunk.bytes)),
+      Assembler.ADD(Reg.heapPointer, Reg.heapPointer, Reg.scratch),
       chunk.initialize
     )
   }
