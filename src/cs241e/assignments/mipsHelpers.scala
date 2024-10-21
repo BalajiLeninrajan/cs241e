@@ -4,6 +4,7 @@ import cs241e.mips.*
 import Assembler.*
 import ProgramRepresentation.*
 import CodeBuilders.*
+import cs241e.assignments.Reg.result
 
 object mipsHelpers {
   // get element at index from array
@@ -69,6 +70,12 @@ object mipsHelpers {
 
   // assigns b to a
   def move(a: Reg, b: Reg) = ADD(a, b, Reg.zero)
+
+  // Load immediate into r
+  def li(r: Reg, imm: Word) = block(
+    LIS(r),
+    imm
+  )
 
   // pushes r onto the stack (mutates Reg.scratch)
   def stackPush(r: Reg) = block(
