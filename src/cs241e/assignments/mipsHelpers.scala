@@ -61,6 +61,9 @@ object mipsHelpers {
   // stores value of v in Reg.result
   def getVar(v: Variable) = read(Reg.result, v)
 
+  // stores value of v in r
+  def getVar(r: Reg, v: Variable) = read(r, v)
+
   // prints r (mutates Reg.scratch)
   def printReg(r: Reg) = block(
     LIS(Reg.scratch),
