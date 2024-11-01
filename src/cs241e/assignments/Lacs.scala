@@ -229,10 +229,12 @@ object Lacs {
       }
     }
 
-    if (checkValidTokens(convertedTokens.head, convertedTokens.tail)) {
-      convertedTokens.filter(token =>
+    if (convertedTokens.isEmpty) {
+      Seq(Token("BOF"), Token("EOF"))
+    } else if (checkValidTokens(convertedTokens.head, convertedTokens.tail)) {
+      Token("BOF") +: convertedTokens.filter(token =>
         token.kind != "WHITESPACE" && token.kind != "COMMENT"
-      )
+      ) :+ Token("EOF")
     } else {
       sys.error("INVALID CONSECUTIVE TOKENS")
     }
