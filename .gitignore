@@ -1,0 +1,9 @@
+.bloop
+.bsp
+.metals
+project
+lib
+target
+test
+.scalafmt.conf
+build.sbt
