@@ -658,7 +658,7 @@ object Transformations {
       * (instead of on the stack). This includes:
       *   - every procedure that is ever made into a closure
       *   - recursively, every enclosing procedure that contains an inner
-      *     procedure nested within it whose frame is allocated on the heap
+      *     procedure 2ested within it whose frame is allocated on the heap
       */
     val frameOnHeap: Set[Procedure] = procedures.foldLeft(Set[Procedure]()) {
       (current, procedure) => current + procedure
@@ -739,6 +739,7 @@ object Transformations {
                 stackTop(scratch),
                 paramChunk
                   .store(Reg.scratch, callee.staticLink, Reg.result),
+                stackTop(result),
                 stackPop(),
                 LIS(Reg.targetPC),
                 Use(callee.label),
@@ -886,7 +887,44 @@ object Transformations {
         * the appropriate `Variable`s to access these values in the chunk.
         */
       def eliminateVarAccesses(code: Code): Code = {
-        def fun: PartialFunction[Code, Code] = ???
+        def eliminateHelper(current: Procedure, va: VarAccess): Code = {
+
+          val currentFrame = phaseOneResults(current)._2
+
+          if (paramChunks(current).variables.contains(va.variable)) {
+            if (va.read) {
+              block(
+                currentFrame.load(Reg.scratch, Reg.scratch, current.paramPtr),
+                paramChunks(current).load(Reg.scratch, va.register, va.variable)
+              )
+            } else {
+              block(
+                currentFrame.load(Reg.scratch, Reg.scratch, current.paramPtr),
+                paramChunks(current)
+                  .store(Reg.scratch, va.variable, va.register)
+              )
+            }
+          } else if (currentFrame.variables.contains(va.variable)) {
+            if (va.read) {
+              currentFrame.load(Reg.scratch, va.register, va.variable)
+            } else { currentFrame.store(Reg.scratch, va.variable, va.register) }
+          } else {
+            block(
+              paramChunks(current)
+                .load(Reg.scratch, Reg.scratch, current.staticLink),
+              eliminateHelper(current.outer.get, va)
+            )
+          }
+        }
+
+        def fun: PartialFunction[Code, Code] = {
+          case va: VarAccess => {
+            block(
+              move(Reg.scratch, Reg.framePointer),
+              eliminateHelper(currentProcedure, va)
+            )
+          }
+        }
 
         transformCode(code, fun)
       }

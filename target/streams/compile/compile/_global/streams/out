@@ -1,2 +1,5 @@
-[0m[[0m[33mwarn[0m] [0m[0mthere was 1 feature warning; re-run with -feature for details[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m[33m-- Warning: /home/balaji/Documents/code/cs241e/cs241e/src/cs241e/assignments/Scanning.scala:28:51 [0m[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m28 |[0m        dfa.transition.lift(state, char).getOrElse([33mreturn[0m [31mfalse[0m)[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m[33m   |[0m                                                   ^^^^^^^^^^^^[0m[0m
+[0m[[0m[33mwarn[0m] [0m[0m[33m   |[0mNon local returns are no longer supported; use `boundary` and `boundary.break` in `scala.util` instead[0m
 [0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
