@@ -1,5 +1,7 @@
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E040] Syntax Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/A7TestsL1.scala:37:0 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m37 |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m'}' expected, but eof found[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/A9TestsL2.scala:28:4 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m28 |[0m    scanAndParseAndType([0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m    ^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    Not found: scanAndParseAndType[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

@@ -905,9 +905,10 @@ object Transformations {
               )
             }
           } else if (currentFrame.variables.contains(va.variable)) {
-            if (va.read) {
+            if (va.read)
               currentFrame.load(Reg.scratch, va.register, va.variable)
-            } else { currentFrame.store(Reg.scratch, va.variable, va.register) }
+            else
+              currentFrame.store(Reg.scratch, va.variable, va.register)
           } else {
             block(
               paramChunks(current)
