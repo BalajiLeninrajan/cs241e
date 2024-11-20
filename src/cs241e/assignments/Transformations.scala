@@ -911,6 +911,7 @@ object Transformations {
               currentFrame.store(Reg.scratch, va.variable, va.register)
           } else {
             block(
+              currentFrame.load(Reg.scratch, Reg.scratch, current.paramPtr),
               paramChunks(current)
                 .load(Reg.scratch, Reg.scratch, current.staticLink),
               eliminateHelper(current.outer.get, va)
