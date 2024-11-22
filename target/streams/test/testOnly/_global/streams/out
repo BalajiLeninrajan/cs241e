@@ -1,4 +1,4 @@
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(A6TestsL2, org.scalatest.tools.Framework$$anon$1@25a361f7, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(A6TestsL2, org.scalatest.tools.Framework$$anon$1@5ca222c9, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mA6TestsL2:[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- scala[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- lacs[0m[0m
@@ -8,7 +8,7 @@
 [0m[[0m[0minfo[0m] [0m[0m[32m- lacs_nested[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- scala_closures[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- lacs_closure[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 872 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 1 second, 56 milliseconds.[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 8[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 1, aborted 0[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 8, failed 0, canceled 0, ignored 0, pending 0[0m[0m

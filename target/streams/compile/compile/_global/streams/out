@@ -1,25 +1,5 @@
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/balaji/Documents/code/cs241e/cs241e/src/cs241e/assignments/Transformations.scala:1024:59 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m1024 |[0m                  [33mval[0m [36mreadParamPtr[0m = currentFrame.load(Reg.scratch2, Reg.scratch, currentProc.paramPtr)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m     |[0m                                                       ^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m     |[0mvalue scratch2 is not a member of object cs241e.assignments.Reg - did you mean Reg.scratch?[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/balaji/Documents/code/cs241e/cs241e/src/cs241e/assignments/Transformations.scala:1036:42 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m1036 |[0m                    currentFrame.load(Reg.scratch2, register, variable)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m     |[0m                                      ^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m     |[0mvalue scratch2 is not a member of object cs241e.assignments.Reg - did you mean Reg.scratch?[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/balaji/Documents/code/cs241e/cs241e/src/cs241e/assignments/Transformations.scala:1038:43 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m1038 |[0m                    currentFrame.store(Reg.scratch2, variable, register)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m     |[0m                                       ^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m     |[0mvalue scratch2 is not a member of object cs241e.assignments.Reg - did you mean Reg.scratch?[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/balaji/Documents/code/cs241e/cs241e/src/cs241e/assignments/Transformations.scala:1049:59 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m1049 |[0m                  [33mval[0m [36mreadParamPtr[0m = currentFrame.load(Reg.scratch2, Reg.scratch, currentProc.paramPtr)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m     |[0m                                                       ^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m     |[0mvalue scratch2 is not a member of object cs241e.assignments.Reg - did you mean Reg.scratch?[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/balaji/Documents/code/cs241e/cs241e/src/cs241e/assignments/Transformations.scala:1050:77 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m1050 |[0m                  [33mval[0m [36mupdateStatic[0m = currentParamChunk.load(Reg.scratch, Reg.scratch2, currentProc.staticLink)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m     |[0m                                                                         ^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m     |[0mvalue scratch2 is not a member of object cs241e.assignments.Reg - did you mean Reg.scratch?[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/balaji/Documents/code/cs241e/cs241e/src/cs241e/assignments/Transformations.scala:1064:28 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m1064 |[0m                    ADD(Reg.scratch2, Reg.framePointer),[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m     |[0m                        ^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m     |[0mvalue scratch2 is not a member of object cs241e.assignments.Reg - did you mean Reg.scratch?[0m
-[0m[[0m[31merror[0m] [0m[0m6 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E008] Not Found Error: /home/balaji/Documents/code/cs241e/cs241e/src/cs241e/assignments/Transformations.scala:763:43 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m763 |[0m              tempVars :+ closureChunkAddr +: closureParamChunkAddr,[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m    |[0m                                           ^^^^^^^^^^^^^^^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0mvalue +: is not a member of cs241e.assignments.ProgramRepresentation.Variable[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
