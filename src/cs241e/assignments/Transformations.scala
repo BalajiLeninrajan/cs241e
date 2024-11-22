@@ -818,10 +818,8 @@ object Transformations {
             Scope(
               Seq(closureChunkAddr),
               block(
-                Comment("create closure"),
                 heap.allocate(closureChunk),
                 write(closureChunkAddr, Reg.result),
-                Comment("closure label"),
                 LIS(Reg.result),
                 Use(closure.procedure.label),
                 read(Reg.scratch, closureChunkAddr),
@@ -975,17 +973,11 @@ object Transformations {
           if (paramChunks(current).variables.contains(va.variable)) {
             if (va.read) {
               block(
-                Comment(
-                  s"read param ${currentProcedure}, ${va.variable}, ${va.register}"
-                ),
                 currentFrame.load(Reg.scratch, Reg.scratch, current.paramPtr),
                 paramChunks(current).load(Reg.scratch, va.register, va.variable)
               )
             } else {
               block(
-                Comment(
-                  s"write param ${currentProcedure}, ${va.variable}, ${va.register}"
-                ),
                 currentFrame.load(Reg.scratch, Reg.scratch, current.paramPtr),
                 paramChunks(current)
                   .store(Reg.scratch, va.variable, va.register)
@@ -994,16 +986,10 @@ object Transformations {
           } else if (currentFrame.variables.contains(va.variable)) {
             if (va.read)
               block(
-                Comment(
-                  s"read frame ${currentProcedure}, ${va.variable}, ${va.register}"
-                ),
                 currentFrame.load(Reg.scratch, va.register, va.variable)
               )
             else
               block(
-                Comment(
-                  s"write frame ${currentProcedure}, ${va.variable}, ${va.register}"
-                ),
                 currentFrame.store(Reg.scratch, va.variable, va.register)
               )
           } else {
@@ -1011,9 +997,6 @@ object Transformations {
               currentFrame.load(Reg.scratch, Reg.scratch, current.paramPtr),
               paramChunks(current)
                 .load(Reg.scratch, Reg.scratch, current.staticLink),
-              Comment(
-                s"eliminate Helper ${current.outer.get}, ${va.variable}, ${va.register}"
-              ),
               eliminateHelper(
                 current.outer.get,
                 va
@@ -1026,7 +1009,6 @@ object Transformations {
           case va: VarAccess => {
             block(
               move(Reg.scratch, Reg.framePointer),
-              Comment(s"eliminate Helper ${currentProcedure}, ${va.variable}"),
               eliminateHelper(currentProcedure, va)
             )
           }
