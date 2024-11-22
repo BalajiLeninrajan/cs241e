@@ -50,7 +50,7 @@ object CodeGenerator {
           case "expra ID BECOMES expr" =>
             symbolTable(tree.children.head.lhs.lexeme) match
               case ps: ProcedureScope =>
-                sys.error("proc where should be int")
+                sys.error("proc where should be var")
               case TypedVariable(variable, tpe) =>
                 assign(variable, recur(tree.children.last))
           case "expra expr" => recur(tree.children.head)
@@ -110,16 +110,16 @@ object CodeGenerator {
           case "factor NUM" => const(tree.children.head.lhs.lexeme.toInt)
           case "factor LPAREN expr RPAREN" => recur(tree.children(1))
           case "factor factor LPAREN argsopt RPAREN" => {
-            def helper(tre: Tree): Seq[Code] = {
+            def argsHelper(tre: Tree): Seq[Code] = {
               tre.production match
-                case "argsopt args" => helper(tre.children.head)
+                case "argsopt args" => argsHelper(tre.children.head)
                 case "args expr COMMA args" =>
-                  recur(tre.children.head) +: helper(tre.children.last)
+                  recur(tre.children.head) +: argsHelper(tre.children.last)
                 case "args expr" => Seq(recur(tre.children.head))
                 case _           => Seq()
             }
             val funCallTree = tree.children.head
-            val args = helper(tree.children(2))
+            val args = argsHelper(tree.children(2))
             funCallTree.production match
               case "factor ID" =>
                 symbolTable(funCallTree.children.head.lhs.lexeme) match
@@ -131,14 +131,13 @@ object CodeGenerator {
                     )
                   }
                   case proc: ProcedureScope =>
-                    Call(proc.procedure, helper(tree.children(2)))
+                    Call(proc.procedure, args)
               case _ =>
                 CallClosure(
                   recur(funCallTree),
                   args,
-                  args.map(args => new Variable("tmp"))
+                  args.map(arg => new Variable("tmp"))
                 )
-
           }
       )
 
