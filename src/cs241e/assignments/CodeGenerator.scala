@@ -119,11 +119,11 @@ object CodeGenerator {
                 case _           => Seq()
             }
             val funCallTree = tree.children.head
+            val args = helper(tree.children(2))
             funCallTree.production match
               case "factor ID" =>
                 symbolTable(funCallTree.children.head.lhs.lexeme) match
                   case TypedVariable(variable, tpe) => {
-                    val args = helper(tree.children(2))
                     CallClosure(
                       getVar(variable),
                       args,
@@ -132,7 +132,13 @@ object CodeGenerator {
                   }
                   case proc: ProcedureScope =>
                     Call(proc.procedure, helper(tree.children(2)))
-              case _ => ???
+              case _ =>
+                CallClosure(
+                  recur(funCallTree),
+                  args,
+                  args.map(args => new Variable("tmp"))
+                )
+
           }
       )
 
