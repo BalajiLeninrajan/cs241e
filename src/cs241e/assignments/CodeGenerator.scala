@@ -20,6 +20,7 @@ import Typer.*
 import mipsHelpers.*
 import scanparse.Grammars.*
 import cs241e.scanparse.DFAs.Token
+import scala.runtime.stdLibPatches.language.`3.2`
 
 /** A code generator that converts a Lacs parse tree into the intermediate
   * language developed in Assignment 1 to 6.
@@ -47,16 +48,11 @@ object CodeGenerator {
             block(recur(tree.children.head), recur(tree.children.last))
           case "expras expra" => recur(tree.children.head)
           case "expra ID BECOMES expr" =>
-            block(
-              recur(tree.children.last),
-              write(
-                symbolTable(tree.children.head.lhs.lexeme) match
-                  case _: ProcedureScope =>
-                    sys.error("proc where should be int")
-                  case TypedVariable(variable, tpe) => variable,
-                  Reg.result
-              )
-            )
+            symbolTable(tree.children.head.lhs.lexeme) match
+              case ps: ProcedureScope =>
+                sys.error("proc where should be int")
+              case TypedVariable(variable, tpe) =>
+                assign(variable, recur(tree.children.last))
           case "expra expr" => recur(tree.children.head)
           case "expr IF LPAREN test RPAREN LBRACE expras RBRACE ELSE LBRACE expras RBRACE" => {
             val test = tree.children(2)
@@ -109,25 +105,34 @@ object CodeGenerator {
             )
           case "factor ID" =>
             symbolTable(tree.children.head.lhs.lexeme) match
-              case _: ProcedureScope => sys.error("proc where should be var")
+              case ps: ProcedureScope           => Closure(ps.procedure)
               case TypedVariable(variable, tpe) => getVar(variable)
-
           case "factor NUM" => const(tree.children.head.lhs.lexeme.toInt)
-          case "factor LPAREN expr RPAREN"           => recur(tree.children(1))
+          case "factor LPAREN expr RPAREN" => recur(tree.children(1))
           case "factor factor LPAREN argsopt RPAREN" => {
             def helper(tre: Tree): Seq[Code] = {
               tre.production match
                 case "argsopt args" => helper(tre.children.head)
-                case "args expr COMMA args" => recur(tre.children.head) +: helper(tre.children.last)
+                case "args expr COMMA args" =>
+                  recur(tre.children.head) +: helper(tre.children.last)
                 case "args expr" => Seq(recur(tre.children.head))
-                case _ => Seq()
-              }
-            Call(
-            symbolTable(tree.children.head.children.head.lhs.lexeme) match
-              case TypedVariable(variable, tpe) => sys.error("var where should be proc")
-              case proc: ProcedureScope => proc.procedure,
-              helper(tree.children(2))
-            )
+                case _           => Seq()
+            }
+            val funCallTree = tree.children.head
+            funCallTree.production match
+              case "factor ID" =>
+                symbolTable(funCallTree.children.head.lhs.lexeme) match
+                  case TypedVariable(variable, tpe) => {
+                    val args = helper(tree.children(2))
+                    CallClosure(
+                      getVar(variable),
+                      args,
+                      args.map(arg => new Variable("tmp"))
+                    )
+                  }
+                  case proc: ProcedureScope =>
+                    Call(proc.procedure, helper(tree.children(2)))
+              case _ => ???
           }
       )
 
