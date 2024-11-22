@@ -17,6 +17,7 @@ import cs241e.assignments.Assembler.*
 import cs241e.assignments.CodeBuilders.*
 import cs241e.assignments.ProgramRepresentation.*
 import cs241e.mips.*
+import cs241e.assignments.mipsHelpers.*
 
 /** An implementation of a strategy to lay out and keep track of memory, both on
   * the stack and on the heap.
@@ -255,9 +256,8 @@ object MemoryManagement {
       * `ProgramRepresentation.scala`.
       */
     def allocate(chunk: Chunk): Code = block(
-      Assembler.ADD(Reg.result, Reg.heapPointer, Reg.zero),
-      Assembler.LIS(Reg.scratch),
-      Word(encodeUnsigned(chunk.bytes)),
+      move(Reg.result, Reg.heapPointer),
+      li(Reg.scratch, Word(encodeUnsigned(chunk.bytes))),
       Assembler.ADD(Reg.heapPointer, Reg.heapPointer, Reg.scratch),
       chunk.initialize
     )

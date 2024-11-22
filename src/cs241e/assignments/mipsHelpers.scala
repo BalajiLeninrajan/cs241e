@@ -71,6 +71,11 @@ object mipsHelpers {
     SW(r, 0, Reg.scratch)
   )
 
+  def printVar(v: Variable) = block(
+    read(Reg(11), v),
+    printReg(Reg(11))
+  )
+
   // assigns b to a
   def move(a: Reg, b: Reg) = ADD(a, b, Reg.zero)
 

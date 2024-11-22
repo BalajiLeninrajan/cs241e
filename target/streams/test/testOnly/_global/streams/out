@@ -1,24 +1,17 @@
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(A10TestsL2, org.scalatest.tools.Framework$$anon$1@3a11a719, false, [SuiteSelector])[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mA10TestsL2:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m- test *** FAILED ***[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  java.lang.RuntimeException: var where should be proc[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.sys.package$.error(package.scala:27)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at cs241e.assignments.CodeGenerator$.recur$1(CodeGenerator.scala:127)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at cs241e.assignments.CodeGenerator$.recur$1(CodeGenerator.scala:91)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at cs241e.assignments.CodeGenerator$.recur$1(CodeGenerator.scala:78)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at cs241e.assignments.CodeGenerator$.recur$1(CodeGenerator.scala:60)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at cs241e.assignments.CodeGenerator$.recur$1(CodeGenerator.scala:48)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at cs241e.assignments.CodeGenerator$.generateCode$1(CodeGenerator.scala:137)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at cs241e.assignments.CodeGenerator$.generateProcedures$$anonfun$1(CodeGenerator.scala:143)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.runtime.function.JProcedure1.apply(JProcedure1.java:15)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  at scala.runtime.function.JProcedure1.apply(JProcedure1.java:10)[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m  ...[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(A6TestsL2, org.scalatest.tools.Framework$$anon$1@25a361f7, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mA6TestsL2:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- scala[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m- lacs[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 512 milliseconds.[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 2[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- scala_fact[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- lacs_fact[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- scala_nested[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- lacs_nested[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- scala_closures[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- lacs_closure[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 872 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 8[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 1, aborted 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 1, failed 1, canceled 0, ignored 0, pending 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[31m*** 1 TEST FAILED ***[0m[0m
-[0m[[0m[31merror[0m] [0m[0mFailed tests:[0m
-[0m[[0m[31merror[0m] [0m[0m	A10TestsL2[0m
-[0m[[0m[31merror[0m] [0m[0m(Test / [31mtestOnly[0m) sbt.TestsFailedException: Tests unsuccessful[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 8, failed 0, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mAll tests passed.[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	A6TestsL2[0m

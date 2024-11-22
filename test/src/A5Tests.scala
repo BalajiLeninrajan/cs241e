@@ -24,7 +24,7 @@ class A5TestsL2 extends AnyFunSuite {
       call(printProcedure, const(0)),
       call(printProcedure, const(Int.MinValue))
     )
-    val machineCode = compilerA5(Seq(main, printProcedure))
+    val machineCode = compilerA6(Seq(main, printProcedure))
     // val endState = A4.loadAndRun(
     //   machineCode,
     //   register1 = Word(encodeSigned(1)),
@@ -45,7 +45,7 @@ class A5TestsL2 extends AnyFunSuite {
     main.code = block(
       call(printArray, getVar(a), getVar(b))
     )
-    val machineCode = compilerA5(Seq(main, printArray, printProcedure))
+    val machineCode = compilerA6(Seq(main, printArray, printProcedure))
     val endState = A4.loadAndRunArray(machineCode, arr)
   }
   test("Tree") {
@@ -72,7 +72,7 @@ class A5TestsL2 extends AnyFunSuite {
     main.code = block(
       call(treeHeight(0), getVar(a), getVar(b))
     )
-    val machineCode = compilerA5(main +: treeHeight :+ printProcedure)
+    val machineCode = compilerA6(main +: treeHeight :+ printProcedure)
     val endState = A4.loadAndRunArray(machineCode, array = array)
     println(endState.reg(result.number))
   }

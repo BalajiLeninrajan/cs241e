@@ -18,6 +18,7 @@ import CodeBuilders.*
 import Assembler.*
 import MemoryManagement.*
 import cs241e.mips.*
+import cs241e.assignments.Reg
 import cs241e.Utils.*
 import Debugger.*
 
@@ -25,8 +26,6 @@ import scala.collection.mutable
 import scala.runtime.stdLibPatches.language.`3.1`
 import scala.annotation.meta.param
 import mipsHelpers.*
-import cs241e.assignments.Reg.result
-import cs241e.assignments.Reg.scratch
 
 /** Implementations of various transformations on the `Code` objects defined in
   * `ProgramRepresentation.scala`. In general, the transformations successively
@@ -660,9 +659,7 @@ object Transformations {
       *   - recursively, every enclosing procedure that contains an inner
       *     procedure 2ested within it whose frame is allocated on the heap
       */
-    val frameOnHeap: Set[Procedure] = procedures.foldLeft(Set[Procedure]()) {
-      (current, procedure) => current + procedure
-    }
+    val frameOnHeap: Set[Procedure] = procedures.toSet
 
     /** The first phase of compilation: performs the transformations up to
       * eliminateScopes so that the full set of variables of the procedure is
@@ -712,17 +709,23 @@ object Transformations {
         def fun: PartialFunction[Code, Code] = {
           case call: Call => {
             val callee = call.procedure
+            val paramChunkAddr = new Variable(
+              "Address of allocated param chunk"
+            )
             val tempVars = createTempVars(callee.parameters)
             val paramChunk = paramChunks(callee)
             Scope(
-              tempVars,
+              tempVars :+ paramChunkAddr,
               block(
                 Block(
                   tempVars
                     .zip(call.arguments)
                     .map((variable, code) => assign(variable, code))
                 ),
-                Stack.allocate(paramChunk),
+                if (frameOnHeap(callee))
+                  heap.allocate(paramChunk)
+                else
+                  Stack.allocate(paramChunk),
                 Block(
                   tempVars
                     .zip(callee.parameters)
@@ -734,15 +737,62 @@ object Transformations {
                       )
                     )
                 ),
-                stackPush(result),
+                write(paramChunkAddr, Reg.result),
                 computeStaticLink(callee),
-                stackTop(scratch),
+                read(Reg.scratch, paramChunkAddr),
                 paramChunk
                   .store(Reg.scratch, callee.staticLink, Reg.result),
-                stackTop(result),
-                stackPop(),
+                read(Reg.result, paramChunkAddr),
                 LIS(Reg.targetPC),
                 Use(callee.label),
+                JALR(Reg.targetPC)
+              )
+            )
+          }
+          case closureCall: CallClosure => {
+            val closureStaticLink = new Variable("static link of closure")
+            val closureChunkAddr = new Variable("Address of Closure Chunk")
+            val closureParamChunkAddr = new Variable(
+              "Address of Closure Param Chunk"
+            )
+            val tempVars = createTempVars(
+              closureCall.parameters :+ closureStaticLink
+            )
+            val closureParamChunk = Chunk(
+              closureCall.parameters :+ closureStaticLink
+            )
+            Scope(
+              tempVars :+ closureChunkAddr :+ closureParamChunkAddr,
+              block(
+                Block(
+                  closureCall.arguments
+                    .zip(tempVars)
+                    .map((code, variable) => assign(variable, code))
+                ),
+                closureCall.closure,
+                write(closureChunkAddr, Reg.result),
+                assign(
+                  tempVars.last,
+                  closureChunk.load(Reg.result, Reg.result, closureEnvironment)
+                ),
+                heap.allocate(closureParamChunk),
+                write(closureParamChunkAddr, Reg.result),
+                Block(
+                  closureCall.parameters
+                    .zip(tempVars)
+                    .map((parameter, tempVar) =>
+                      block(
+                        read(Reg.scratch, tempVar),
+                        closureParamChunk
+                          .store(Reg.result, parameter, Reg.scratch)
+                      )
+                    )
+                ),
+                read(Reg.scratch, tempVars.last),
+                closureParamChunk
+                  .store(Reg.result, closureStaticLink, Reg.scratch),
+                read(Reg.result, closureChunkAddr),
+                closureChunk.load(Reg.result, Reg.targetPC, closureCode),
                 JALR(Reg.targetPC)
               )
             )
@@ -758,7 +808,32 @@ object Transformations {
         * implement handling of closures in Assignment 6, you will change the
         * method body to actually eliminate `Closure`s.
         */
-      def eliminateClosures(code: Code): Code = code
+      def eliminateClosures(code: Code): Code = {
+        def fun: PartialFunction[Code, Code] = {
+          case closure: Closure => {
+            val closureChunkAddr = new Variable(
+              "Address of newly created closure"
+            )
+            Scope(
+              Seq(closureChunkAddr),
+              block(
+                Comment("create closure"),
+                heap.allocate(closureChunk),
+                write(closureChunkAddr, Reg.result),
+                LIS(Reg.result),
+                Use(closure.procedure.label),
+                read(Reg.scratch, closureChunkAddr),
+                closureChunk.store(Reg.scratch, closureCode, Reg.result),
+                computeStaticLink(closure.procedure),
+                read(Reg.scratch, closureChunkAddr),
+                closureChunk.store(Reg.scratch, closureEnvironment, Reg.result),
+                read(Reg.result, closureChunkAddr)
+              )
+            )
+          }
+        }
+        transformCode(code, fun)
+      }
 
       /** Find `Call`s that appear in tail position in their containing
         * procedure. Replace each one with the same `Call` but with `isTail` set
@@ -833,7 +908,10 @@ object Transformations {
       def addEntryExit(code: Code): Code = {
         val enter = block(
           ADD(Reg.savedParamPtr, Reg.zero, Reg.result),
-          Stack.allocate(frame),
+          if (frameOnHeap(currentProcedure))
+            heap.allocate(frame)
+          else
+            Stack.allocate(frame),
           frame
             .store(Reg.result, currentProcedure.dynamicLink, Reg.framePointer),
           ADD(Reg.framePointer, Reg.result, Reg.zero),
@@ -851,8 +929,9 @@ object Transformations {
             Reg.framePointer,
             currentProcedure.dynamicLink
           ),
-          Stack.pop,
-          Stack.pop,
+          if (!frameOnHeap(currentProcedure))
+            block(Stack.pop, Stack.pop)
+          else block(),
           JR(Reg.link)
         )
         block(Define(currentProcedure.label), enter, code, exit)
@@ -914,7 +993,10 @@ object Transformations {
               currentFrame.load(Reg.scratch, Reg.scratch, current.paramPtr),
               paramChunks(current)
                 .load(Reg.scratch, Reg.scratch, current.staticLink),
-              eliminateHelper(current.outer.get, va)
+              eliminateHelper(
+                current.outer.get,
+                va
+              )
             )
           }
         }
@@ -930,8 +1012,6 @@ object Transformations {
 
         transformCode(code, fun)
       }
-
-      /* Main body of phaseTwo. */
 
       val code1 = eliminateVarAccesses(code)
       val code2 = addEntryExit(code1)

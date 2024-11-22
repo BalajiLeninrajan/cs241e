@@ -1,7 +1,28 @@
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/A9TestsL2.scala:28:4 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m28 |[0m    scanAndParseAndType([0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m    ^^^^^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    Not found: scanAndParseAndType[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E040] Syntax Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/A6TestsL2.scala:137:4 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m137 |[0m    )[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m    |[0m    ^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m    '}' expected, but ')' found[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E040] Syntax Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/A6TestsL2.scala:147:0 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m147 |[0m}[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m    |[0m^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0meof expected, but '}' found[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/A6TestsL2.scala:138:43 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m138 |[0m    [33mval[0m [36mmachineCode[0m = compilerA6(Seq(main, increaseBy, procedure))[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m    |[0m                                           ^^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m                                           Not found: increaseBy[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/A6TestsL2.scala:138:55 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m138 |[0m    [33mval[0m [36mmachineCode[0m = compilerA6(Seq(main, increaseBy, procedure))[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m    |[0m                                                       ^^^^^^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m                                                  Not found: procedure[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E007] Type Mismatch Error: /home/balaji/Documents/code/cs241e/cs241e/test/src/A6TestsL2.scala:138:37 [0m[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m138 |[0m    [33mval[0m [36mmachineCode[0m = compilerA6(Seq(main, increaseBy, procedure))[0m
+[0m[[0m[31merror[0m] [0m[0m[31m[31m    |[0m                                     ^^^^[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m          Found:    main.type[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m          Required: cs241e.assignments.ProgramRepresentation.Procedure[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m[0m
+[0m[[0m[31merror[0m] [0m[0m[31m    |[0m longer explanation available when compiling with `-explain`[0m
+[0m[[0m[31merror[0m] [0m[0m5 errors found[0m
