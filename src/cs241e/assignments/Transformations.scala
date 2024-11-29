@@ -659,7 +659,14 @@ object Transformations {
       *   - recursively, every enclosing procedure that contains an inner
       *     procedure 2ested within it whose frame is allocated on the heap
       */
-    val frameOnHeap: Set[Procedure] = procedures.toSet
+    var frameOnHeap: Set[Procedure] = Set()
+    def addToFrameOnHeap(proc: Procedure): Unit = {
+      var cur = Option(proc)
+      while (cur.isDefined) {
+        frameOnHeap += cur.get
+        cur = cur.get.outer
+      }
+    }
 
     /** The first phase of compilation: performs the transformations up to
       * eliminateScopes so that the full set of variables of the procedure is
@@ -812,6 +819,7 @@ object Transformations {
       def eliminateClosures(code: Code): Code = {
         def fun: PartialFunction[Code, Code] = {
           case closure: Closure => {
+            addToFrameOnHeap(currentProcedure)
             val closureChunkAddr = new Variable(
               "Address of newly created closure"
             )
